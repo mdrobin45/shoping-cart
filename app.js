@@ -15,7 +15,12 @@ const quantityUpdating = (Id, isIncrement, price) => {
         // Update price
         let toNumber = parseInt(price);
         let totalPrice = quantity * toNumber;
-        getElement('phonePrice').innerText = totalPrice;
+        if (price==1219) {
+            getElement('phonePrice').innerText = totalPrice;
+        }else if(price==59){
+            getElement('casePrice').innerText = totalPrice;
+        }
+        
     }
     // Decrement quantity & price
     else {
@@ -28,8 +33,12 @@ const quantityUpdating = (Id, isIncrement, price) => {
         //Update price
         let toNumber = parseInt(price);
         let totalPrice = quantity * toNumber;
-        if (totalPrice >= 1219) {
+        if (price==1219) {
             getElement('phonePrice').innerText = totalPrice;
+            // console.log(totalPrice);
+        }else if(price==59){
+            getElement('casePrice').innerText = totalPrice;
+            // console.log(totalPrice);
         }
     }
 };
@@ -40,5 +49,6 @@ getElement('incrementPhoneQuantity').addEventListener('click', () => { quantityU
 getElement('decrementPhoneQuantity').addEventListener('click', () => { quantityUpdating('numberOfPhone', false, phonePrice); });
 
 // Update case quantity
-getElement('incrementCaseQuantity').addEventListener('click', () => { quantityUpdating('numberOfCase', true); });
-getElement('decrementCaseQuantity').addEventListener('click', () => { quantityUpdating('numberOfCase', false); });
+const casePrice=getElement('casePrice').innerText;
+getElement('incrementCaseQuantity').addEventListener('click', () => { quantityUpdating('numberOfCase', true,casePrice); });
+getElement('decrementCaseQuantity').addEventListener('click', () => { quantityUpdating('numberOfCase', false,casePrice); });
